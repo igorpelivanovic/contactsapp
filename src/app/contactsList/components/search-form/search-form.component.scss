@@ -1,0 +1,44 @@
+:host{
+    flex: 1;
+    .search-form-container{
+        form{
+            .label-container{
+                label{
+                    .input-container{
+                        display: flex;
+                        position: relative;
+                        input{
+                            width: 100%;
+                            outline: none;
+                            background-color: #91a5de;
+                            border: 1px solid #7c91dd;
+                            font-size: .85rem;
+                            border-radius: 10px;
+                            padding: 5px 30px 5px 10px;
+                            font-weight: 500;
+                            &::placeholder{
+                                text-transform: capitalize;
+                                font-weight: 700;
+                                font-size: 0.8rem;
+                            }
+                        }
+                        button.clear-search-input{
+                            position: absolute;
+                            right: 10px;
+                            top: 50%;
+                            translate: 0 -50%;
+                            background-color: transparent;
+                            border: none;
+                            cursor: pointer;
+                            span.icon{
+                                fa-icon{
+                                    display: flex;
+                                }
+                            }
+                        }   
+                    }
+                }
+            }
+        }
+    }
+}

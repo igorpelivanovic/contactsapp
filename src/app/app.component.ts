@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { MobileInfoLineComponent } from './components/mobile-info-line/mobile-info-line.component';
-import { ContactsListComponent } from './contactsList/contacts-list/contacts-list.component';
+import { ContactsListComponent } from './contactsList/contacts-list.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, MobileInfoLineComponent, ContactsListComponent],
+  imports: [CommonModule, RouterOutlet, MobileInfoLineComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

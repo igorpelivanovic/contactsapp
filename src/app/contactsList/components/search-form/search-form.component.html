@@ -1,0 +1,18 @@
+<div class="search-form-container">
+    <form [formGroup]="searchForm">
+        <div class="label-container">
+            <label for="search-input">
+                <div class="input-container">
+                    <input type="text" id="search-input" name="search-input" placeholder="search for contact..." spellcheck="false" autocomplete="off" formControlName="searchValue">
+                    @if (!getControl('searchValue').hasError('isEmpty')) {
+                        <button class="clear-search-input" type="button" (click)="clearSearchValue()">
+                            <span class="icon">
+                                <fa-icon [icon]="icon.faCircleXmark"></fa-icon>
+                            </span>
+                        </button>
+                    }
+                </div>
+            </label>
+        </div>
+    </form>
+</div>

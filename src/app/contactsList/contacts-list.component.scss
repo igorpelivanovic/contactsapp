@@ -1,0 +1,140 @@
+.aplication-wrapper{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    .aplication-headLine-container{
+        background-color: #5971b4;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+        padding-inline: 10px;
+        height: 50px;
+        gap: 10px;
+        .title{
+            font-size: 1.2rem;
+            text-transform: capitalize;
+        }
+        .open-form-btn-container{
+            button{
+                font-size: 1.2rem;
+                border: none;
+                padding-inline: 5px;
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: transparent;
+                span.icon{
+                    color: white;
+                }
+            }
+        }
+        .close-form-btn-container{
+            button{
+                padding-inline: 5px;
+                font-size: 1.2rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border: none;
+                cursor: pointer;
+                background-color: transparent;
+                span.icon{
+                    color: white;
+                    fa-icon{
+                    display: flex;
+                    }
+                }
+            }
+        }
+    }
+    .list-contacts-container{
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        padding-block: 10px 30px;
+        .sections-contacts-container{
+            width: 100%;
+            flex: 1 0px;
+            overflow-y: scroll;
+            padding-inline: 5px;
+            &::-webkit-scrollbar {
+                width: 5px;
+            }
+            &::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                background-color: #91a5de;
+            }
+            .section-contacts-container{
+                .section-title{
+                    padding-inline: 10px;
+                    border-bottom: 2px solid #00000024;
+                    span.title{
+                        text-transform: capitalize;
+                        font-weight: 700;
+                        font-size: 1rem;
+                    }
+                }
+                .section-body{
+                    .contact-container{
+                        cursor: pointer;
+                        display: flex;
+                        align-items: center;
+                        gap: 15px;
+                        padding: 10px;
+                        border-bottom: 1px solid #00000026;
+                        &:last-of-type{
+                            border: none;
+                        }
+                        .img-contact-container{
+                            span.img{
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                width: 40px;
+                                aspect-ratio: 1/1;
+                                background-color: red;
+                                text-transform: capitalize;
+                                font-weight: 700;
+                                font-size: 1.4rem;
+                                border-radius: 50%;
+                            }
+                        }
+                        .name-contact-container{
+                            span.name{
+                                text-transform: capitalize;
+                                font-weight: 500;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .action-btn-container{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+        button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 55px;
+            border-radius: 50%;
+            border: 1px solid #89a5f1;
+            cursor: pointer;
+            background-color: #5971b4;
+            color: white;
+            font-size: 1.1rem;
+            aspect-ratio: 1/1;
+            span.icon{
+                fa-icon{
+                    display: flex;
+                }
+            }
+        }
+    }
+}
