@@ -1,40 +1,17 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faWifi, faBatteryFull } from '@fortawesome/free-solid-svg-icons';
+import { MobileInfoLineComponent } from './components/mobile-info-line/mobile-info-line.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, FontAwesomeModule],
+  imports: [CommonModule, RouterOutlet, MobileInfoLineComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent implements OnInit {
+export class AppComponent{
 
-  datePipe = inject(DatePipe)
-  
   title = 'contactsapp';
-  time = this.currentTime
-
-  private icons = {
-    faWifi: faWifi,
-    faBatteryFull: faBatteryFull
-  }
-
-  get icon(){
-    return this.icons
-  }
-
-  get currentTime(): string{
-    return this.datePipe.transform( new Date() ,'HH:mm') as string
-  }
-
-  ngOnInit(): void {
-    setInterval(()=>{
-      this.time = this.currentTime 
-    }, 1000)
-  }
-
+  
 }
