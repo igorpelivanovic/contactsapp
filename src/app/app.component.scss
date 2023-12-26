@@ -5,6 +5,8 @@
     width: fit-content;
     box-shadow: 0 0 8px #1B1A1B;
     position: relative;
+    display: flex;
+    flex-direction: column;
     .mobile-buttons-container{
         span{
             position: absolute;
