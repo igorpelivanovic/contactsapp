@@ -1,0 +1,47 @@
+.mobile-border{
+    padding: 20px;
+    background-color: #1B1A1B;
+    border-radius: 50px;
+    width: fit-content;
+    box-shadow: 0 0 8px #1B1A1B;
+    position: relative;
+    .mobile-buttons-container{
+        span{
+            position: absolute;
+            width: 4px;
+            height: 56px;
+            background-color: #2C2B2C;
+            border: 1px solid #656565;
+            top: 180px;
+            &.left-buttons-container{
+                right: 100%;
+                border-radius: 5px 3px 3px 5px;
+                border-right: none;
+                &::before, &::after{
+                    content: "";
+                    position: absolute;
+                    right: 0;
+                    width: 100%;
+                    border-radius: 5px 3px 3px 5px;
+                    background-color: #2C2B2C;
+                    border: 1px solid #656565;
+                    border-right: none;
+                }
+                &::before{
+                    bottom: 160%;
+                    height: 60%;
+                }
+                &::after{
+                    top: 120%;
+                    height: 100%;
+                }
+            }
+            &.right-buttons-container{
+                left: 100%;
+                border-left: none;
+                border-radius: 3px 5px 5px 3px;
+            }
+        }
+    }
+}
+
