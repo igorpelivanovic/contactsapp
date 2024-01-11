@@ -1,8 +1,8 @@
 <div class="mobile-border">
     <div class="mobile-content-container">
         <app-mobile-info-line></app-mobile-info-line>
-        <div class="aplication-container">
-            <router-outlet></router-outlet>
+        <div class="aplication-container" [@pagesAnime]="routerData(outlet)">
+            <router-outlet #outlet="outlet"></router-outlet>
         </div>
     </div>
     <div class="mobile-buttons-container">

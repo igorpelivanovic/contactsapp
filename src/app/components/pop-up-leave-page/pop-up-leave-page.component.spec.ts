@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddContactComponent } from './add-contact.component';
+import { PopUpLeavePageComponent } from './pop-up-leave-page.component';
 
-describe('AddContactComponent', () => {
-  let component: AddContactComponent;
-  let fixture: ComponentFixture<AddContactComponent>;
+describe('PopUpLeavePageComponent', () => {
+  let component: PopUpLeavePageComponent;
+  let fixture: ComponentFixture<PopUpLeavePageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AddContactComponent]
+      imports: [PopUpLeavePageComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(AddContactComponent);
+    fixture = TestBed.createComponent(PopUpLeavePageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

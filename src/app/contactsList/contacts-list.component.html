@@ -22,176 +22,29 @@
     </div>
     <div class="list-contacts-container">
         <div class="sections-contacts-container">
-            <div class="section-contacts-container">
-                <div class="section-title">
-                    <span class="title">a</span>
-                </div>
-                <div class="section-body">
-                    <div class="contact-container">
-                        <div class="img-contact-container">
-                            <span class="img">
-                                a
-                            </span>
+            @for (group of contacts | filterBy:searchValue : true : 'name' | groupBy | sort:'key'; track $index) {
+                <div class="section-contacts-container">
+                    @if(searchValue.length == 0){
+                        <div class="section-title">
+                            <span class="title">{{group.key}}</span>
                         </div>
-                        <div class="name-contact-container">
-                            <span class="name">test test</span>
+                    }
+                    @for (contact of group.values | sort:'name'; track $index) {
+                        <div class="section-body">
+                            <div class="contact-container">
+                                <div class="img-contact-container">
+                                    <span class="img" SetBgColor [bgHueCode]="contact.iconColor">
+                                        {{contact.name.slice(0, 1)}}
+                                    </span>
+                                </div>
+                                <div class="name-contact-container">
+                                    <span class="name">{{contact.name}}</span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    }
                 </div>
-            </div>
-            <div class="section-contacts-container">
-                <div class="section-title">
-                    <span class="title">a</span>
-                </div>
-                <div class="section-body">
-                    <div class="contact-container">
-                        <div class="img-contact-container">
-                            <span class="img">
-                                a
-                            </span>
-                        </div>
-                        <div class="name-contact-container">
-                            <span class="name">test test</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="section-contacts-container">
-                <div class="section-title">
-                    <span class="title">a</span>
-                </div>
-                <div class="section-body">
-                    <div class="contact-container">
-                        <div class="img-contact-container">
-                            <span class="img">
-                                a
-                            </span>
-                        </div>
-                        <div class="name-contact-container">
-                            <span class="name">test test</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="section-contacts-container">
-                <div class="section-title">
-                    <span class="title">a</span>
-                </div>
-                <div class="section-body">
-                    <div class="contact-container">
-                        <div class="img-contact-container">
-                            <span class="img">
-                                a
-                            </span>
-                        </div>
-                        <div class="name-contact-container">
-                            <span class="name">test test</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="section-contacts-container">
-                <div class="section-title">
-                    <span class="title">a</span>
-                </div>
-                <div class="section-body">
-                    <div class="contact-container">
-                        <div class="img-contact-container">
-                            <span class="img">
-                                a
-                            </span>
-                        </div>
-                        <div class="name-contact-container">
-                            <span class="name">test test</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="section-contacts-container">
-                <div class="section-title">
-                    <span class="title">a</span>
-                </div>
-                <div class="section-body">
-                    <div class="contact-container">
-                        <div class="img-contact-container">
-                            <span class="img">
-                                a
-                            </span>
-                        </div>
-                        <div class="name-contact-container">
-                            <span class="name">test test</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="section-contacts-container">
-                <div class="section-title">
-                    <span class="title">a</span>
-                </div>
-                <div class="section-body">
-                    <div class="contact-container">
-                        <div class="img-contact-container">
-                            <span class="img">
-                                a
-                            </span>
-                        </div>
-                        <div class="name-contact-container">
-                            <span class="name">test test</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="section-contacts-container">
-                <div class="section-title">
-                    <span class="title">a</span>
-                </div>
-                <div class="section-body">
-                    <div class="contact-container">
-                        <div class="img-contact-container">
-                            <span class="img">
-                                a
-                            </span>
-                        </div>
-                        <div class="name-contact-container">
-                            <span class="name">test test</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-             <div class="section-contacts-container">
-                <div class="section-title">
-                    <span class="title">a</span>
-                </div>
-                <div class="section-body">
-                    <div class="contact-container">
-                        <div class="img-contact-container">
-                            <span class="img">
-                                a
-                            </span>
-                        </div>
-                        <div class="name-contact-container">
-                            <span class="name">test test</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="section-contacts-container">
-                <div class="section-title">
-                    <span class="title">a</span>
-                </div>
-                <div class="section-body">
-                    <div class="contact-container">
-                        <div class="img-contact-container">
-                            <span class="img">
-                                a
-                            </span>
-                        </div>
-                        <div class="name-contact-container">
-                            <span class="name">test test</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
         <div class="action-btn-container">
             <button type="button" (click)="addNewContact()">

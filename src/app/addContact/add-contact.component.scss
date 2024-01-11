@@ -1,0 +1,76 @@
+.aplication-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    height: 100%;
+    position: relative;
+    background-color: white;
+    .aplication-headLine-container{
+        flex: 0 0 140px;
+        background: #5971b4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .img-contact-container{
+            background-color: #f9f9fb;
+            width: 70px;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 4px solid #89a5f1;
+            overflow: hidden;
+            color: #5971b4;
+            font-size: 1.2rem;
+            span{
+                color: #f9f9fb;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+                text-transform: capitalize;
+                font-weight: 700;
+                font-size: 1.4rem;
+            }
+        }
+    }
+    .aplication-main-container{
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        .form-container{
+            padding-inline: 20px 15px;
+            overflow: auto;
+            flex: 1 0px;
+            scrollbar-gutter: stable;
+            &::-webkit-scrollbar {
+                width: 5px;
+            }
+            &::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                background-color: #91a5de;
+            }
+            form{
+                display: flex;
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+        .action-btns-container{
+            display: flex;
+            button{
+                display: block;
+                flex: 1;
+                border: none;
+                background-color: none;
+                text-transform: capitalize;
+                font-weight: 600;
+                font-size: 1.2rem;
+                cursor: pointer;
+                padding-block: 10px;
+            }
+        }
+    }
+}

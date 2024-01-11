@@ -1,0 +1,15 @@
+:host{
+    position: absolute;
+    top: 100%;
+    .error-message-container{
+        display: inline-flex;
+        gap: 5px;
+        margin-top: 5px;
+        font-size: .9rem;
+        span.message{
+            &::first-letter{
+                text-transform: capitalize;
+            }
+        }
+    }
+}

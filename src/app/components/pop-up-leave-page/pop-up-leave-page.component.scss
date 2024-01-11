@@ -1,0 +1,47 @@
+:host{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0000006b;
+    z-index: 10;
+    .popup-container{
+        flex: 0 0 80%;
+        background-color: white;
+        padding: 30px 25px;
+        border-radius: 25px;
+        box-shadow: 0 0 2px #999;
+        position: relative;
+        .msg-container{
+            text-align: center;
+            font-size: 0.95rem;
+            font-weight: 500;
+            &::first-letter{
+                text-transform: capitalize;
+            }
+        }
+        .btns-container{
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-evenly;
+            button{
+                display: block;
+                border: none;
+                text-transform: capitalize;
+                background-color: transparent;
+                cursor: pointer;
+                flex: 0 0 30%;
+                font-weight: 500;
+                font-size: .95rem;
+                background-color: #5971b4;
+                padding: 8px;
+                border-radius: 20px;
+                color: #fff;
+            }
+        }
+}
+}

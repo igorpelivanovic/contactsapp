@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Data, RouterOutlet } from '@angular/router';
 import { MobileInfoLineComponent } from './components/mobile-info-line/mobile-info-line.component';
-import { ContactsListComponent } from './contactsList/contacts-list.component';
+import { pagesAnime } from './core/animations/pagesAnime';
 
 @Component({
+  animations: [pagesAnime],
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, RouterOutlet, MobileInfoLineComponent],
@@ -14,5 +15,10 @@ import { ContactsListComponent } from './contactsList/contacts-list.component';
 export class AppComponent{
 
   title = 'contactsapp';
+
+
+  routerData(outlet: RouterOutlet): Data{
+    return  outlet && outlet.activatedRouteData && outlet.activatedRouteData['animationState']
+  }
   
 }

@@ -36,7 +36,7 @@ export class SearchFormComponent implements OnInit {
       searchValue: new FormControl("", isEmptyValidator())
     })
     this.getControl('searchValue').valueChanges.subscribe(val=>{
-      this.updateFormValue.emit(val)
+      this.updateFormValue.emit(String(val).trimStart())
       console.log(this.getControl('searchValue').errors)
     })
   }

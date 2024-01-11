@@ -1,0 +1,75 @@
+.type-field-container{
+    .select-container{
+        position: relative;
+        width: 120px;
+        .options-container{
+            position: absolute;
+            z-index: 1;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            border-radius: 0 0 8px 8px;
+            max-height: 100px;
+            overflow: hidden;
+            padding-bottom: 5px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #acbff3;
+            border-top: none;
+            background-color: white;
+            box-shadow: 0 0 2px #5d5d5d;
+            .options-content{
+                overflow-y: auto;
+                ul{
+                    list-style: none;
+                    font-size: .9rem;
+                    
+                    li{
+                        padding: 5px 6px;
+                        text-transform: capitalize;
+                        font-weight: 500;
+                        cursor: pointer;
+                        &:hover{
+                            background-color: #acbff3;
+                        }
+                    }
+            }
+            &::-webkit-scrollbar {
+                width: 5px;
+            }
+            &::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                background-color: #91a5de;
+            }
+            
+            }
+            &+.selected-option{
+                border-radius: 8px 8px 0px 0px;
+                .icon-container span.icon fa-icon{
+                    rotate: 180deg;
+                }
+            }
+        }
+        .selected-option{
+            border-radius: 8px;
+            display: flex;
+            padding: 6px 10px;
+            font-size: .9rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-transform: capitalize;
+            border: 1px solid #89a5f1;
+            .option-title{
+                flex: 1;
+            }
+            .icon-container{
+                span.icon{
+                    display: flex;
+                    fa-icon{
+                        transition: .3s;
+                    }
+                }
+            }
+        }
+    }
+}

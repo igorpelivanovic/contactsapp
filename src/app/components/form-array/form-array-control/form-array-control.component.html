@@ -1,0 +1,27 @@
+<div class="field-container" [formGroup]="fGroup">
+    <app-form-array-control-select [fControl]="getFormControl('type')" [selectOptions]="selectOptions"></app-form-array-control-select>
+    <div class="delete-btn-container">
+        <button type="button" (click)="removeField()">
+            <span class="icon">
+                <fa-icon [icon]="icon.faTrash"></fa-icon>
+            </span>
+        </button>
+    </div>
+    <div class="input-container">
+        <div class="label-container">
+            <label [for]="fArrayName+index">
+                @if (getFormControl('value').errors && getFormControl('value').touched) {
+                    <app-input-error-message [placeholder]="placeholder" [errorKey]="errorKey"></app-input-error-message>
+                }
+                <input formControlName="value" [id]="fArrayName+index" [name]="fArrayName+index" [type]="contentType" [placeholder]="placeholder">
+                @if (getFormControl('value').value.length > 0) {
+                    <button type="button" class="clear-search-input" (click)="clearFormValue()">
+                        <span class="icon">
+                            <fa-icon [icon]="icon.faCircleXmark"></fa-icon>
+                        </span>
+                    </button>
+                }
+            </label>
+        </div>
+    </div>
+</div>
