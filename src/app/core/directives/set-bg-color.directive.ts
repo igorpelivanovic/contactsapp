@@ -12,12 +12,11 @@ export class SetBgColorDirective implements AfterViewInit {
 
   constructor(private el: ElementRef) {}
 
-  private addBgColor(): void{
-    this._renderer.setStyle(this.el.nativeElement, 'background-color', `hsl(${this.bgHueCode}, 50%, 50%)`)
-  }
-  
   ngAfterViewInit(): void {
     this.addBgColor()
   }
-
+  
+  private addBgColor(): void{
+    this._renderer.setStyle(this.el.nativeElement, 'background-color', `hsl(${this.bgHueCode}, 50%, 50%)`)
+  }
 }

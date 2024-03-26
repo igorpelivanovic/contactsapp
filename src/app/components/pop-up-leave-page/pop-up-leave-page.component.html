@@ -1,9 +1,9 @@
-<div class="popup-container">
+<div class="popup-container bg-color-white">
     <div class="msg-container">
-        <p>are you sure want to quit without saving?</p>
+        <p>{{content.message}}</p>
     </div>
     <div class="btns-container">
-        <button class="cancle" (click)="handle(false)">no</button>
-        <button class="accept" (click)="handle(true)">yes</button>
+        <button class="cancle bg-color-blue-20 text-color-white" (click)="handle(false)">{{content.false}}</button>
+        <button class="accept bg-color-blue-20 text-color-white" (click)="handle(true)">{{content.true}}</button>
     </div>
 </div>

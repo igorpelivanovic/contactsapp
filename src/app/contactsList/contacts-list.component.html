@@ -1,9 +1,10 @@
 <div class="aplication-wrapper">
-    <div class="aplication-headLine-container">
-        @if (!renderSearchFrom) {
+    <div class="aplication-header-container">
+        <div class="header-top-container">
+            @if (!renderSearchFrom) {
             <h1 class="title">all contacts</h1>
             <div class="open-form-btn-container">
-                <button type="button" (click)="openSearchForm()">
+                <button type="button" class="text-color-white" (click)="openSearchForm()">
                     <span class="icon">
                         <fa-icon [icon]="icon.faMagnifyingGlass"></fa-icon>
                     </span>
@@ -11,42 +12,61 @@
             </div>
         }@else {
             <div class="close-form-btn-container">
-                <button (click)="closeSearchForm()">
+                <button type="button" class="text-color-white navi-btn" (click)="closeSearchForm()">
                     <span class="icon">
                         <fa-icon [icon]="icon.faArrowLeft"></fa-icon>
                     </span>
                 </button>
             </div>
-            <app-search-form (updateFormValue)="updateSearchValue($event)"></app-search-form>
+            <app-search-form [initSearchVal]="searchValue" (updateFormValue)="updateSearchValue($event)"></app-search-form>
         }
+        </div>
     </div>
-    <div class="list-contacts-container">
-        <div class="sections-contacts-container">
-            @for (group of contacts | filterBy:searchValue : true : 'name' | groupBy | sort:'key'; track $index) {
-                <div class="section-contacts-container">
-                    @if(searchValue.length == 0){
-                        <div class="section-title">
-                            <span class="title">{{group.key}}</span>
-                        </div>
-                    }
-                    @for (contact of group.values | sort:'name'; track $index) {
-                        <div class="section-body">
-                            <div class="contact-container">
-                                <div class="img-contact-container">
-                                    <span class="img" SetBgColor [bgHueCode]="contact.iconColor">
-                                        {{contact.name.slice(0, 1)}}
-                                    </span>
+    <div class="aplication-main-container">
+        <div class="contactsList-container">
+            <div class="contactsList-overflow-container">
+                <div class="contacts-content">
+                    @for (group of contacts | filterBy:searchValue : true : 'name' | groupBy | sort:'key'; track $index) {
+                        <div class="contacts-group" [id]="sectionIdPrefix+group.key" appAddCustomAttribute [customAtributes]="[{key: 'grouptitle', value: group.key}]">
+                            @if(searchValue.length == 0){
+                                <div class="contacts-group-head border-color-light">
+                                    <span class="title text-color-blue-10">{{group.key}}</span>
                                 </div>
-                                <div class="name-contact-container">
-                                    <span class="name">{{contact.name}}</span>
-                                </div>
+                            }
+                            <div class="contacts-group-body">
+                                @for (contact of group.values | sort:'name'; track $index) {
+                                    <div class="contact-container hover-bg-color-light border-color-black-transparent-10" (click)="previewContact(contact.id)">
+                                        <div class="img-contact-container text-color-white">
+                                            <span class="img" SetBgColor [bgHueCode]="contact.iconColor">
+                                                {{contact.name.slice(0, 1)}}
+                                            </span>
+                                        </div>
+                                        <div class="name-contact-container text-color-black">
+                                            <p class="name">{{contact.name}}</p>
+                                        </div>
+                                    </div>
+                                }
                             </div>
                         </div>
                     }
+                    @empty {
+                        <app-not-found-content [headText]="'no contacts'" [text]="noContentText">
+                            <fa-layers [fixedWidth]="true" icon>
+                                <fa-icon [icon]="icon.faUsers" class="mainIcon text-color-blue-10"></fa-icon>
+                                @if(searchValue.length > 0){
+                                    <fa-icon [icon]="icon.faMagnifyingGlass" transform="right-10 down-8" size="2xs" class="seconderyIcon text-color-blue-95" ></fa-icon>
+                                }
+                            </fa-layers>
+                        </app-not-found-content>
+                    }
                 </div>
-            }
+            </div>
+            <app-curent-contact-of-index></app-curent-contact-of-index>
         </div>
-        <div class="action-btn-container">
+        @if(searchValue.length == 0 && contacts.length > 0){
+            <app-section-index-container [data]="contacts| groupBy | sort:'key' | getArrayOfPropertyObecktOfArray: 'key'"></app-section-index-container>
+        }
+        <div class="aplication-main-btn-container">
             <button type="button" (click)="addNewContact()">
                 <span class="icon">
                     <fa-icon [icon]="icon.faUserPlus"></fa-icon>

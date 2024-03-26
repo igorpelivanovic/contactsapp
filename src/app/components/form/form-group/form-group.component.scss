@@ -1,0 +1,24 @@
+:host{
+    flex: 1;
+}
+.form-group-container{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    .delete-btn-container{
+        button{
+            background-color: transparent;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            display: block;
+        }
+    }
+    .form-element-controlers-container{
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        flex: 1;
+    }
+}

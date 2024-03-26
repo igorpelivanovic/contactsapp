@@ -1,0 +1,55 @@
+<div class="aplication-wrapper">
+    <div class="aplication-header-container">
+        <div class="header-top-container">
+            <button type="button" class="text-color-white navi-btn" (click)="goBack()">
+                <fa-icon [icon]="icon.faArrowLeft"></fa-icon>
+            </button>
+            <button type="button" class="text-color-white navi-btn" (click)="deleteContact()">
+                <fa-icon [icon]="icon.faTrash"></fa-icon>
+            </button>
+        </div>
+        <div class="header-bottom-container">
+            <div class="img-contact-container" SetBgColor [bgHueCode]="contact.iconColor" >
+                <span class="icon" >{{contact.name | getCharacters : 0 : 1 }}</span>
+            </div>
+            <div class="name-contact-container text-color-white">
+                <p>{{contact.name}}</p>
+            </div>
+        </div>
+        
+    </div>
+    <div class="aplication-main-container">
+        <div class="contact-datas-container">
+            @for (key of contactData | getObjectKeys; track $index) {
+                <div class="datas-section-container border-color-blue-90">
+                    <div class="icon-section-container text-color-blue-10">
+                        <fa-icon [icon]="initIcon(key)"></fa-icon>
+                    </div>
+                    <div class="datas-container">
+                        @for (item of contactData[key]; track $index) {
+                        <div class="data-container border-color-light">
+                            <p class="type-data text-color-blue-20">{{item.type}}</p>
+                            <p class="data text-color-black">{{key != 'phones' ? item.value : item.value | phoneFormat }}</p>
+                        </div>
+                        }
+                    </div>
+                </div>
+            }
+            @empty {
+                <app-not-found-content [headText]="'no data'" [text]="noContentText">
+                    <fa-icon [icon]="icon.faFileCircleXmark" class="mainIcon text-color-blue-10"></fa-icon>
+                </app-not-found-content>
+            }
+        </div>
+        <div class="aplication-main-btn-container">
+            <button type="button" (click)="goEdit()">
+                <span class="icon">
+                    <fa-icon [icon]="icon.faPen"></fa-icon>
+                </span>
+            </button>
+        </div>
+    </div>
+    @if(renderModal){
+        <app-pop-up-leave-page [content]="modelBoxContent" @popupModelAnime ></app-pop-up-leave-page>
+    }
+</div>

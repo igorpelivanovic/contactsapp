@@ -1,0 +1,31 @@
+@if(arrayOfKey.length > 0){
+    <div class="index-of-sections-list-container bg-color-blue-transparent-90" (touchmove)="onTouchMove($event)" (touchstart)="elementIsInFocus()" (touchend)="elementIsBlurTouch()"  (mousedown)="elementIsInFocus()" (mouseup)="elementIsBlur()" (mouseleave)="elementIsBlur()">
+        @if(overflowList == true){
+            <div class="scroll-btn-container up">
+                <button appScrollContainerBtn [containerInFocus]="isMouseDown" class="border-color-white" [ngClass]="listContainer.scrollTop > 0 ? 'text-color-blue-20': 'text-color-blue-90'"  [scrollTop]="false" [containerRef]="listContainer" type="button">
+                    <span class="icon">
+                        <fa-icon [icon]="icon.faChevronUp"></fa-icon>
+                    </span>
+                </button>
+            </div>
+            <div class="scroll-btn-container down">
+                <button appScrollContainerBtn [containerInFocus]="isMouseDown" [ngClass]="listContainer.scrollTop + listContainer.clientHeight + 1 >= listContainer.scrollHeight ? 'text-color-blue-90': 'text-color-blue-20'"  [containerRef]="listContainer" type="button" class="border-color-white">
+                    <span class="icon">
+                        <fa-icon [icon]="icon.faChevronDown"></fa-icon>
+                    </span>
+                </button>
+            </div>
+        }
+        <div class="index-of-sections-list" #listContainer >
+            @for (key of arrayOfKey; track $index) {
+                <div class="index-btn-container">
+                    <button type="button" appScrollToElement [containerInFocus]="isMouseDown" [sectionIndex]="sectionIdPrefix+key" class="border-color-white text-color-blue-20">
+                        <span class="icon">
+                            {{key}}
+                        </span>
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+}

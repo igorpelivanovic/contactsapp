@@ -1,32 +1,6 @@
 <div class="aplication-wrapper">
-    <div class="aplication-headLine-container">
-        <div class="img-contact-container">
-                @if(!getFormControl('name').errors){
-                    <span SetBgColor [bgHueCode]="bgHueCode">{{firstLetterName}}</span>
-                }@else {
-                    <fa-icon [icon]="icon.faUserPlus"></fa-icon>
-                }
-        </div>
-    </div>
-    <div class="aplication-main-container">
-        <div class="form-container">
-            <form [formGroup]="addForm">
-                <app-form-input-text [labelIcon]="icon.faUser" controlName="name" placeholder="name"></app-form-input-text>
-                <app-form-array [selectOptions]="numberSelecteOptions" [labelIcon]="icon.faPhone" arrayName="numbers" placeholder="number" [newField]="numbertsTest" contentType="number"></app-form-array>
-                <app-form-array [selectOptions]="mailSelecteOptions" [labelIcon]="icon.faEnvelope" arrayName="mails" placeholder="mail" [newField]="mailsTest" contentType="email"></app-form-array>
-                <app-form-array [selectOptions]="socialSelecteOptions" [labelIcon]="icon.faGlobe" arrayName="socials" placeholder="username" [newField]="socialsTest" contentType="text"></app-form-array>
-            </form>
-        </div>
-        <div class="action-btns-container">
-            <button type="button" (click)="backToContactsList()">
-                back
-            </button>
-            <button type="button" (click)="addContact()">
-                save
-            </button>
-        </div>
-    </div>
+    <app-form-contact [buttonsTitle]="contactFormButtonsTitle" [formData]="formContactData" (formSubmit)="submitForm($event)" (cancle)="cancelForm()"></app-form-contact>
     @if(renderModal){
-        <app-pop-up-leave-page @popupModelAnime (canLeavePage)="deRenderPopup()"></app-pop-up-leave-page>
+        <app-pop-up-leave-page [content]="modelBoxContent" @popupModelAnime (canLeavePage)="deRenderPopup()"></app-pop-up-leave-page>
     }
 </div>

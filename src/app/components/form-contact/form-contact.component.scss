@@ -1,0 +1,47 @@
+:host{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    flex: 1 0px
+}
+.aplication-main-container{
+    flex-direction: column;
+    .form-container{
+        padding-inline: 20px 15px;
+        overflow: auto;
+        flex: 1 0px;
+        scrollbar-gutter: stable;
+        padding-bottom: 40px;
+        .input-container{
+            input.name{
+                text-transform: capitalize;
+            }
+        }
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+        &::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+        }
+    }
+    .submit-form-btn-container{
+        padding-block: 20px;
+        button{
+            border-radius: 50px;
+            margin: 0 auto;
+            width: 180px;
+            display: block;
+            flex: 1;
+            border: none;
+            text-transform: capitalize;
+            font-weight: 600;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding-block: 10px;
+            &:disabled{
+                cursor: auto;
+            }
+        }
+
+    }
+}

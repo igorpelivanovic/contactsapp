@@ -3,9 +3,9 @@
         <div class="label-container">
             <label for="search-input">
                 <div class="input-container">
-                    <input type="text" id="search-input" name="search-input" placeholder="search for contact..." spellcheck="false" autocomplete="off" formControlName="searchValue">
+                    <input type="text" id="search-input" name="search-input" placeholder="search for contact..." spellcheck="false" autocomplete="off" formControlName="searchValue" class="bg-color-blue-90 border-color-blue-80 text-color-black">
                     @if (!getControl('searchValue').hasError('isEmpty')) {
-                        <button class="clear-search-input" type="button" (click)="clearSearchValue()">
+                        <button class="clear-input text-color-blue-10" type="button" (click)="clearSearchValue()">
                             <span class="icon">
                                 <fa-icon [icon]="icon.faCircleXmark"></fa-icon>
                             </span>

@@ -1,0 +1,31 @@
+$themeColors: (
+    white: #f9f9fb,
+    light: #d0deff,
+    gray: #b8c2d9,
+    gray-90: #656565,
+    black: #050506,
+    black-10: #1B1A1B,
+    black-80: #2C2B2C,
+    black-transparent-10: #00000026,
+    red: #c52d2d,
+    blue-5: #2e2ead,
+    blue-10: #2b4691,
+    blue-20: #5971b4,
+    blue-60: #6483e2,
+    blue-65: #6783d1,
+    blue-80: #7c91dd,
+    blue-85: #89a5f1,
+    blue-88: #8ca2dd,
+    blue-90: #91a5de,
+    blue-92: #acbff3,
+    blue-95: #a9b5d5,
+    blue-transparent-90: #91a5de8f,
+);
+
+$breakPointsView: (
+    "small": 576px,
+    "medium": 768px ,
+    "large": 992px ,
+    "extraLarge": 1200px ,
+    "extraExtraLarge": 1400px
+)

@@ -1,5 +1,5 @@
-import { Injectable, inject } from '@angular/core';
-import { Contact } from '../interfaces/contact.interface';
+import { Injectable } from '@angular/core';
+import { ContactInterface } from '../interfaces/contact.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -7,29 +7,47 @@ import { Contact } from '../interfaces/contact.interface';
 export class StorageService {
 
   private itemKey : string = 'contacts'
-  private _data: Contact[] = []
+  private _data: ContactInterface[] = []
 
   constructor() { 
     this._data = this.getData()  
   }
 
-  private getData(): Contact[]{
+  private getData(): ContactInterface[]{
     let data = localStorage.getItem(this.itemKey)
     if(data == null) return []
     return JSON.parse(data)
   }
 
   private saveData(): void{
-    localStorage.setItem(this.itemKey, JSON.stringify(this._data))
+    localStorage.setItem(this.itemKey, JSON.stringify(this.data))
   }
 
-  get data(): Contact[]{
-    return this._data
+  get data(): ContactInterface[]{
+    return Array.from(this._data)
   }
 
-  set addData(newContact: Contact){
+  set addData(newContact: ContactInterface){
     this._data.push(newContact)
     this.saveData()
+  }
+
+  set deleteData(id: number){
+    this._data = this.data.filter(contact=>contact.id != id)
+    this.saveData()
+  }
+
+  set editData(contact: ContactInterface){
+    let index = this.data.findIndex(cont=>cont.id == contact.id)
+    if(index >= 0){
+      this._data[index] = contact
+      this.saveData()
+    }
+  }
+
+  getDataFromId(id: number): ContactInterface | undefined{
+    let data = this.data.find(item => item.id == Number(id))
+    return data
   }
 
 }

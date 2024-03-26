@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output, inject } from '@angular/core';
-import { LeavePageService } from '../../core/services/leave-page.service';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
+import { PopUpPageService } from '../../core/services/leave-page.service';
+import { PopUpModelBoxContent } from '../../core/interfaces/popUpContent.interface';
 
 @Component({
   selector: 'app-pop-up-leave-page',
@@ -8,11 +9,11 @@ import { LeavePageService } from '../../core/services/leave-page.service';
   templateUrl: './pop-up-leave-page.component.html',
   styleUrl: './pop-up-leave-page.component.scss'
 })
-export class PopUpLeavePageComponent {
+export class PopUpLeavePageComponent{
 
   @Output() canLeavePage = new EventEmitter()
-
-  private _leavePageService = inject(LeavePageService)
+  @Input({required: true}) content!: PopUpModelBoxContent
+  private _leavePageService = inject(PopUpPageService)
 
   handle(val: boolean): void{
     this._leavePageService.status = val

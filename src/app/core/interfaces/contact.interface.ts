@@ -1,18 +1,21 @@
+export type ContactFormDataContentType = Record<'type' | 'value', string>
 
-
-interface ContactData {
-    type: string,
-    value: string
+export interface ContactFormDataInterface {
+    name: string,
+    phones: ContactFormDataContentType[]
+    mails: ContactFormDataContentType[]
+    socials: ContactFormDataContentType[]
 }
 
-export interface FormContactData{
-    name: string, 
-    numbers: ContactData[],
-    mails: ContactData[],
-    socials: ContactData[]
-}
-
-export interface Contact extends FormContactData {
-    id: number,
+export interface ContactFormContentInterface extends ContactFormDataInterface{
     iconColor: number
+}
+
+export interface ContactInterface extends ContactFormContentInterface {
+    id: number,
+}
+
+export interface GroupContactsInterface {
+    key: string,
+    values: ContactInterface[]
 }

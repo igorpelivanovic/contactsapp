@@ -1,0 +1,29 @@
+<div class="form-control-container form-element input" [formGroup]="rootGroup">
+    <label [for]="componentConfig.elementSelector">
+        @if (componentConfig.icon != undefined) {
+            <app-form-field-icon [style]="{'font-size': '1.3rem'}" [iconDef]="componentConfig.icon" ></app-form-field-icon>
+        }
+        <div class="input-container" >
+            <input [ngClass]="componentConfig.elementSelector" [name]="componentConfig.elementSelector" [type]="componentConfig.type" autocomplete="off" spellcheck="off" [id]="componentConfig.elementSelector" [name]="componentConfig.elementSelector" [formControl]="formControl" [placeholder]="componentConfig.label">
+            @if (!fieldIsEmpty){
+                <button type="button" class="clear-input" (click)="clearFormControl()">
+                    <span class="icon">
+                        <fa-icon [icon]="icon.faCircleXmark"></fa-icon>
+                    </span>
+                </button>
+            }
+        </div>
+        @if(parentIsArray){
+            <div class="delete-btn-container">
+                <button type="button" (click)="removeField()">
+                    <span class="icon">
+                        <fa-icon [icon]="icon.faTrash"></fa-icon>
+                    </span>
+                </button>
+            </div>
+        }
+    </label>
+    @if(renderErrorMsg){
+        <app-input-error-message [placeholder]="componentConfig.label" [errorKey]="errorKey"></app-input-error-message>
+    }
+</div>

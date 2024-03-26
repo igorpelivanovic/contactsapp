@@ -1,0 +1,26 @@
+<div class="aplication-header-container">
+    <div class="header-top-container">
+        <button type="button" class="text-color-white navi-btn" (click)="cancelForm()">
+            <fa-icon [icon]="icon.faArrowLeft"></fa-icon>
+        </button>
+    </div>
+    <div class="header-bottom-container">
+        <div class="img-contact-container">
+            @if(letter.length > 0){
+                <span SetBgColor [bgHueCode]="bgCode">{{letter}}</span>
+            }@else {
+                <fa-icon [icon]="icon.faUserPlus"></fa-icon>
+            }
+        </div>
+    </div>
+</div>
+<div class="aplication-main-container">
+    <div class="form-container">
+        <app-form [initForm]="formInit" (formSubmit)="submitForm()"></app-form>
+    </div>
+    <div class="submit-form-btn-container">
+        <button type="button" class="bg-color-blue-20 text-color-white" (click)="submitForm()" [disabled]="form.invalid">
+            {{buttonsTitle.submit}}
+        </button>
+    </div>
+</div>

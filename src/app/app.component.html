@@ -1,12 +1,12 @@
-<div class="mobile-border">
-    <div class="mobile-content-container">
+<div class="mobile-border bg-color-black-10">
+    <div class="mobile-content-container bg-color-white">
         <app-mobile-info-line></app-mobile-info-line>
         <div class="aplication-container" [@pagesAnime]="routerData(outlet)">
             <router-outlet #outlet="outlet"></router-outlet>
         </div>
     </div>
     <div class="mobile-buttons-container">
-        <span class="left-buttons-container"></span>
-        <span class="right-buttons-container"></span>
+        <span class="left-buttons-container border-color-gray-90 bg-color-black-80 before-border-color-gray-90 after-border-color-gray-90 before-bg-color-black-80 after-bg-color-black-80"></span>
+        <span class="right-buttons-container border-color-gray-90 bg-color-black-80"></span>
     </div>
 </div>

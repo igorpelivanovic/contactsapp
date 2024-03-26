@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
@@ -14,6 +14,7 @@ import { isEmptyValidator } from '../../../core/validators/is-empty.validator';
 export class SearchFormComponent implements OnInit {
 
   @Output() updateFormValue = new EventEmitter()
+  @Input() initSearchVal : string = ""
 
   private formBuilder = inject(FormBuilder)
 
@@ -33,11 +34,10 @@ export class SearchFormComponent implements OnInit {
 
   private initSearchForm(): void{
     this.searchForm = this.formBuilder.group({
-      searchValue: new FormControl("", isEmptyValidator())
+      searchValue: new FormControl(this.initSearchVal, isEmptyValidator())
     })
     this.getControl('searchValue').valueChanges.subscribe(val=>{
       this.updateFormValue.emit(String(val).trimStart())
-      console.log(this.getControl('searchValue').errors)
     })
   }
 

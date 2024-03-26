@@ -10,32 +10,22 @@
                         input{
                             width: 100%;
                             outline: none;
-                            background-color: #91a5de;
-                            border: 1px solid #7c91dd;
+                            border-width: 1px;
+                            border-style: solid;
                             font-size: .85rem;
                             border-radius: 10px;
                             padding: 5px 30px 5px 10px;
                             font-weight: 500;
                             &::placeholder{
                                 text-transform: capitalize;
-                                font-weight: 700;
-                                font-size: 0.8rem;
+                                font-weight: 500;
+                                font-size: 0.9rem;
+                                color: #f9f9fb;
                             }
                         }
-                        button.clear-search-input{
-                            position: absolute;
-                            right: 10px;
-                            top: 50%;
-                            translate: 0 -50%;
-                            background-color: transparent;
-                            border: none;
-                            cursor: pointer;
-                            span.icon{
-                                fa-icon{
-                                    display: flex;
-                                }
-                            }
-                        }   
+                        button.clear-input{
+                            right: 10px
+                        }
                     }
                 }
             }

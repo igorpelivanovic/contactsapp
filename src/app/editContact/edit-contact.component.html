@@ -1,0 +1,6 @@
+<div class="aplication-wrapper">
+    <app-form-contact [onSubmitSetNewDefValue]="true" [buttonsTitle]="formContactButtonsTitles" [formData]="formContactData" (formSubmit)="submitForm($event)" (cancle)="cancelForm()"></app-form-contact>
+    @if(renderModal){
+        <app-pop-up-leave-page [content]="modelBoxContent" @popupModelAnime (canLeavePage)="deRenderPopup()"></app-pop-up-leave-page>
+    }
+</div>

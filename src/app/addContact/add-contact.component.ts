@@ -1,151 +1,90 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FormInputTextComponent } from '../components/form-input-text/form-input-text.component';
-import { faUserPlus, faUser, faPhone, faGlobe, faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { isEmptyValidator } from '../core/validators/is-empty.validator';
-import { FormArrayComponent } from '../components/form-array/form-array.component';
-import { JsonPipe } from '@angular/common';
-import { phoneOptions } from '../core/data/selectOptions/phoneOptions';
-import { SelectOption } from '../core/interfaces/selectOption.interface';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { PopUpLeavePageComponent } from '../components/pop-up-leave-page/pop-up-leave-page.component';
 import { popupModelAnime } from '../core/animations/popupModelAnime';
-import { socialOptions } from '../core/data/selectOptions/socialOptions';
-import { mailOptions } from '../core/data/selectOptions/mailOptions';
-import { FormControlArray } from '../core/interfaces/formControlArray.interface';
-import { selectOptionValidation } from '../core/validators/select-option';
+import { PopUpModelBoxContent } from '../core/interfaces/popUpContent.interface';
 import { StorageService } from '../core/services/storage.service';
-import { DynamicObject } from '../core/interfaces/DynamicObject.inteface';
-import { Contact, FormContactData } from '../core/interfaces/contact.interface';
-import { SetBgColorDirective } from '../core/directives/set-bg-color.directive';
+import { ContactFormContentInterface, ContactFormDataInterface, ContactInterface } from '../core/interfaces/contact.interface';
+import { FormContactComponent } from "../components/form-contact/form-contact.component";
+import { FormContactButtonTiTles } from '../core/interfaces/formContact.interface';
+import { FormGroup } from '@angular/forms';
 
 
 @Component({
-  animations: [popupModelAnime],
-  selector: 'app-add-contact',
-  standalone: true,
-  imports: [ReactiveFormsModule, FormInputTextComponent, FontAwesomeModule, FormArrayComponent, JsonPipe, PopUpLeavePageComponent, SetBgColorDirective],
-  templateUrl: './add-contact.component.html',
-  styleUrl: './add-contact.component.scss'
+    animations: [popupModelAnime],
+    selector: 'app-add-contact',
+    standalone: true,
+    templateUrl: './add-contact.component.html',
+    imports: [AddContactComponent, PopUpLeavePageComponent, FormContactComponent]
 })
-export class AddContactComponent implements OnInit {
+export class AddContactComponent implements OnInit{
 
-  addForm !: FormGroup
+  private storageServ = inject(StorageService)
+  private _router = inject(Router)
 
-  private formGroup = inject(FormBuilder)
-  private router = inject(Router)
-  private storage = inject(StorageService)
-
-  bgHueCode : number = 0
-
-  private icons = {
-    faUserPlus: faUserPlus,
-    faUser: faUser,
-    faPhone: faPhone,
-    faGlobe: faGlobe,
-    faEnvelope: faEnvelope
+  private _data: ContactFormDataInterface = {
+    phones: [],
+    mails: [],
+    name: '',
+    socials: []
   }
 
-  renderModal: boolean = false
+  contactFormButtonsTitle: FormContactButtonTiTles ={
+    submit: 'save'
+  }
+  private _bgHueCode : number = 0
+  private _renderModal : boolean = false
 
-  ngOnInit(): void {
-    this.initAddForm()
+  @ViewChild(FormContactComponent) formContactInstance !: FormContactComponent
+
+  ngOnInit(): void{
     this.generateRandomBgColor()
-  }
-
-  private initAddForm(): void{
-    this.addForm = this.formGroup.group({
-      name: new FormControl("", {nonNullable: true, validators: [Validators.required, isEmptyValidator()]}),
-      numbers: new FormArray([]),
-      mails: new FormArray([]),
-      socials: new FormArray([])
-    })
   }
 
   private generateRandomBgColor(): void{
-    this.bgHueCode = Number((Math.random() * 360).toFixed(2))
+    this._bgHueCode = Number((Math.random() * 360).toFixed(2))
   }
 
-  get numbertsTest(): FormControlArray[]{
-    return [
-      { name: 'type', value: this.numberSelecteOptions, validation:[Validators.required, selectOptionValidation(this.numberSelecteOptions)]},
-      { name: 'value', value: "", validation:[Validators.required, isEmptyValidator(), Validators.minLength(6), Validators.maxLength(10), Validators.pattern("^((\\+91-?)|0)?[0-9]{6,10}$")] }
-    ]
-  }
-  get mailsTest(): FormControlArray[]{
-    return [
-      { name: 'type', value: this.mailSelecteOptions, validation:[Validators.required, selectOptionValidation(this.mailSelecteOptions)]},
-      { name: 'value', value: "", validation:[Validators.required, isEmptyValidator(), Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")] }
-    ]
-  }
-  get socialsTest(): FormControlArray[]{
-    return [
-      { name: 'type', value: this.socialSelecteOptions, validation:[Validators.required, selectOptionValidation(this.socialSelecteOptions)]},
-      { name: 'value', value: "", validation:[Validators.required, isEmptyValidator()] }
-    ]
+  get formContactData(): ContactFormContentInterface{
+    return {...this._data, iconColor: this._bgHueCode}
   }
 
-  get numberSelecteOptions(): SelectOption[]{
-    return phoneOptions
+  get renderModal(): boolean{
+    return this._renderModal
   }
 
-  get socialSelecteOptions(): SelectOption[]{
-    return socialOptions
+  get modelBoxContent(): PopUpModelBoxContent{
+    return {
+      message: 'are you sure want to quit without saving?',
+      true: 'yes',
+      false: 'no'
+    }
   }
 
-  get mailSelecteOptions(): SelectOption[]{
-    return mailOptions
+  get generateId(): number{
+    return new Date().getTime() 
   }
 
-  get icon(){
-    return this.icons
+  get formInstaceData(): FormGroup{
+    return this.formContactInstance.form
   }
 
-  get isDirtyForm(): boolean{
-    return this.addForm.dirty
+  set renderModal(val: boolean){
+    this._renderModal = val
   }
 
-  get firstLetterName(): string{
-    return this.getFormControl('name').value.trim().slice(0, 1)
+  submitForm(data: ContactFormContentInterface){
+    let id = this.generateId
+    this.storageServ.addData = {...data, id: id}
+    this.formInstaceData.markAsPristine()
+    this._router.navigate(['/preview', id])
   }
 
-  private get generateContactID(): number{
-    return new Date().getTime()
+  cancelForm(){
+    this._router.navigate([''])
   }
 
-  private resetForm(): void{
-    Object.keys(this.addForm.controls).map(key=>{
-      this.addForm.controls[key] instanceof FormArray ? (this.addForm.controls[key] as FormArray).controls.length = 0 : this.addForm.controls[key].reset()
-    })
-    this.generateRandomBgColor()
-  }
-
-  getFormControl(val: string): FormControl{
-    return this.addForm.get(val) as FormControl
-  }
-
-  backToContactsList(): void{
-    this.router.navigate(['/contacts'])
-  }
-  addContact(): void{
-    this.storage.addData = Object.assign(this.trimFormValues(this.addForm.value) as FormContactData , { id: this.generateContactID, iconColor: this.bgHueCode })
-    this.resetForm()
-  }
   deRenderPopup(): void{
-    this.renderModal = false
-  } 
-  private trimFormValues(values: DynamicObject | string[] | string): DynamicObject | string[] | string{
-    if(typeof values == "object" && !Array.isArray(values)){
-        Object.keys(values).map(key=>{
-          values[key] = this.trimFormValues(values[key])
-        })  
-        return values    
-    }
-    if(Array.isArray(values)){
-      return values.map(val=>this.trimFormValues(val))
-    }
-    return values.trim()
+    this._renderModal = false
   }
-
 }

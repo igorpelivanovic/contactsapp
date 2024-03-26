@@ -1,0 +1,119 @@
+@use 'sass:map';
+@import "./variables";
+
+@each $key, $val in $themeColors {
+    #{'.bg-color-'+$key}{
+        background-color: $val;
+    }
+    #{'.text-color-'+$key}{
+        color: $val;
+    }
+    #{'.border-color-'+$key}{
+        border-color: $val;
+    }
+    #{'.hover-bg-color-'+$key}:hover{
+        background-color: $val;
+    }
+    #{'.before-bg-color-'+$key}::before{
+        background-color: $val;
+    }
+    #{'.after-bg-color-'+$key}::after{
+        background-color: $val;
+    }
+    #{'.before-border-color-'+$key}::before{
+        border-color: $val;
+    }
+    #{'.after-border-color-'+$key}::after{
+        border-color: $val;
+    }
+}
+
+*{
+    &::-webkit-scrollbar-thumb{
+        @extend .bg-color-blue-90;
+    }
+}
+form{
+    .form-elements-container{
+        .form-element{
+            @extend .border-color-blue-20;
+            .form-element-icon{
+                @extend .text-color-blue-10
+            }
+            input{
+                @extend .text-color-black
+            }
+            button.clear-input{
+                @extend .text-color-blue-10
+            }
+            &:has(>.message-container){
+                @extend .border-color-red;
+                .form-element-icon, input, button.clear-input{
+                    @extend .text-color-red
+                }
+            }
+        }
+        .form-group-container{
+            .form-element-controlers-container{
+                >*{
+                    .form-control-container{
+                        &.select .selected-option{
+                            @extend .border-color-blue-20;
+                        }
+                    }
+                }
+            }
+        }
+        .form-array-container{
+            .form-element-controlers-container{
+                >*{
+                    @extend .border-color-gray;
+                    .form-control-container{
+                        &.select .selected-option{
+                            @extend .border-color-blue-20;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.aplication-wrapper{
+    @extend .bg-color-white;
+    .aplication-header-container{
+        .header-top-container{
+            @extend .bg-color-blue-20;
+            @extend .text-color-white;
+            @extend .border-color-blue-65;
+        }
+        .header-bottom-container{
+            @extend .bg-color-blue-65;
+            .img-contact-container{
+                @extend .bg-color-white;
+                @extend .border-color-blue-85;
+                @extend .text-color-blue-20;
+                span{
+                    @extend .text-color-white;
+                }
+            }
+        }
+        
+    }
+    .aplication-main-container{
+        .aplication-main-btn-container{
+            button{
+                @extend .border-color-blue-85;
+                @extend .bg-color-blue-20;
+                @extend .text-color-white;
+            }
+        }
+        .submit-form-btn-container{
+            button:disabled{
+                @extend .bg-color-blue-95
+            }
+        }
+    }
+}
+
+

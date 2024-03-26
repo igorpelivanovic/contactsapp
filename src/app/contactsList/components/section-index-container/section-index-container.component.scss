@@ -1,0 +1,79 @@
+:host{
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+    position: absolute;
+    top: 0;
+    right: 6px;
+    width: 24px;
+    height: 100%;
+}
+.index-of-sections-list-container{
+    flex: 1 0px;
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0 20px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    padding-block: 4px;
+    border-radius: 20px;
+
+    .scroll-btn-container{
+        &.up{
+            order: 1;
+        }
+        &.down{
+            order: 3;
+        }
+        button{
+            padding-block: 3px;
+        }
+    }
+    .index-of-sections-list{
+        order: 2;
+    }
+    .scroll-btn-container, .index-of-sections-list .index-btn-container{
+        button{
+            height: 100%;
+            background-color: transparent;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            border: 0;
+            text-transform: capitalize;
+            font-size: .9rem;
+            text-align: center;
+            font-weight: 700;
+            span.icon{
+                display: flex;
+                fa-icon{
+                    display: flex;
+                }
+            }
+        }
+    }
+    .index-of-sections-list{
+        padding-left: 2px;
+        flex: 1 0;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scrollbar-gutter: stable;
+        &::-webkit-scrollbar {
+            width: 2px;
+        }
+        &::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-color: transparent;
+        }
+        :last-child{
+            button{
+                border: none;
+            }
+        }  
+    }
+
+}
