@@ -16,6 +16,7 @@ export const CONTACT_FORM_CONGIF : FormConfigControls = [
       icon: 'name'
     },
     {
+      label: 'number',
       type: 'array',
       name: 'phones',
       icon: 'phones',
@@ -40,6 +41,7 @@ export const CONTACT_FORM_CONGIF : FormConfigControls = [
       }
     },
     {
+      label: 'mail',
       type: 'array',
       name: 'mails',
       validation: [],
@@ -63,6 +65,7 @@ export const CONTACT_FORM_CONGIF : FormConfigControls = [
       }
     },
     {
+      label: 'social account',
       type: 'array',
       name: 'socials',
       icon: 'socials',

@@ -1,21 +1,21 @@
 import { Component, Input, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { StorageService } from '../../core/services/storage.service';
+import { StorageService } from '../core/services/storage.service';
 import { faArrowLeft, faFontAwesome, faTrash, faPen, IconDefinition, faFileCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ContactInterface } from '../../core/interfaces/contact.interface';
-import { GetCharactersPipe } from '../../core/pipes/get-characters.pipe';
-import { SetBgColorDirective } from '../../core/directives/set-bg-color.directive';
-import { DynamicObject } from '../../core/interfaces/model.interface';
-import { GetObjectKeysPipe } from '../../core/pipes/get-object-keys.pipe';
-import { DataIcon } from '../../core/data/formContact/icons';
-import { PhoneFormatPipe } from '../../core/pipes/phone-format.pipe';
-import { PopUpLeavePageComponent } from "../../components/pop-up-leave-page/pop-up-leave-page.component";
-import { PopUpModelBoxContent } from '../../core/interfaces/popUpContent.interface';
-import { popupModelAnime } from '../../core/animations/popupModelAnime';
-import { PopUpPageService } from '../../core/services/leave-page.service';
+import { ContactInterface } from '../core/interfaces/contact.interface';
+import { GetCharactersPipe } from '../core/pipes/get-characters.pipe';
+import { SetBgColorDirective } from '../core/directives/set-bg-color.directive';
+import { DynamicObject } from '../core/interfaces/model.interface';
+import { GetObjectKeysPipe } from '../core/pipes/get-object-keys.pipe';
+import { DataIcon } from '../core/data/formContact/icons';
+import { PhoneFormatPipe } from '../core/pipes/phone-format.pipe';
+import { PopUpLeavePageComponent } from "../components/pop-up-leave-page/pop-up-leave-page.component";
+import { PopUpModelBoxContent } from '../core/interfaces/popUpContent.interface';
+import { popupModelAnime } from '../core/animations/popupModelAnime';
+import { PopUpPageService } from '../core/services/leave-page.service';
 import { Subscription } from 'rxjs';
-import { NotFoundContentComponent } from "../../components/not-found-content/not-found-content.component";
+import { NotFoundContentComponent } from "../components/not-found-content/not-found-content.component";
 
 @Component({
     animations: [popupModelAnime],

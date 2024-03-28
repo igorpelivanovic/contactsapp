@@ -28,11 +28,18 @@
     }
 }
 
-*{
-    &::-webkit-scrollbar-thumb{
+@supports (not selector(::-webkit-scrollbar)) and (not selector(::-webkit-scrollbar-thumb)){
+    *{
+        scrollbar-color: map.get($themeColors, 'blue-90') transparent;
+    }
+}
+
+@supports selector(::-webkit-scrollbar) and selector(::-webkit-scrollbar-thumb){
+    ::-webkit-scrollbar-thumb{
         @extend .bg-color-blue-90;
     }
 }
+
 form{
     .form-elements-container{
         .form-element{
@@ -48,7 +55,10 @@ form{
             }
             &:has(>.message-container){
                 @extend .border-color-red;
-                .form-element-icon, input, button.clear-input{
+                &:has(.options-container){
+                @extend .border-color-blue-20;
+                }
+                .icon-container, input, button.clear-input, .select-container .selected-option{
                     @extend .text-color-red
                 }
             }

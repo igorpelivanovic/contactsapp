@@ -34,14 +34,13 @@ form{
                             border-bottom-style: solid;
                         }
                         &.select{
+                            border-radius: 8px;
                             padding: 0;
-                            border: none;
-                            .selected-option{
-                                border-width: 1px;
-                                border-style: solid;
-                                border-radius: 8px;                          
+                            &:has(.options-container){
+                                border-bottom-left-radius: 0px;
+                                border-bottom-right-radius: 0px;
                             }
-                        } 
+                        }
                     }
                     .form-group-container{
                         padding: 15px 15px 30px;

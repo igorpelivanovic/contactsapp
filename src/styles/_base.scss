@@ -1,5 +1,21 @@
 @import "./theme";
 
+@supports (not selector(::-webkit-scrollbar)) and (not selector(::-webkit-scrollbar-thumb)){
+    *{
+        scrollbar-width: thin;
+    }
+}
+
+@supports selector(::-webkit-scrollbar) and selector(::-webkit-scrollbar-thumb){
+    ::-webkit-scrollbar {
+        width: 3px;
+    }
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+    }
+}
+
+
 *{
     margin: 0;
     padding: 0;

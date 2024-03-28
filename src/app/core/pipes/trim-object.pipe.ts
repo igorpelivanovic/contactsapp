@@ -14,7 +14,6 @@ export class TrimObjectPipe implements PipeTransform {
   private trimObject(value: unknown): unknown{
     if(typeof value === 'string'){ 
       let val = value.trim()
-      console.log(val)
       return val
     }
     if(typeof value === 'object' && Array.isArray(value) && value != null){

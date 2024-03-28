@@ -43,12 +43,6 @@
                     overflow-y: auto;
                     padding-top: 10px;
                     scrollbar-gutter: stable;
-                    &::-webkit-scrollbar {
-                        width: 3px;
-                    }
-                    &::-webkit-scrollbar-thumb {
-                        border-radius: 10px;
-                    }
                     &:has(.notFoundContact-container){
                         scrollbar-gutter: unset;
                     }

@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { deactivateFormGuard } from './core/guards/deactivate-form.guard';
 import { ContactsListComponent } from './contactsList/contacts-list.component';
 import { AddContactComponent } from './addContact/add-contact.component';
-import { PreviewContactComponent } from './previewContact/preview-contact/preview-contact.component';
+import { PreviewContactComponent } from './previewContact/preview-contact.component';
 import { EditContactComponent } from './editContact/edit-contact.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
