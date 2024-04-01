@@ -1,0 +1,41 @@
+<div class="form-element-container" [ngClass]="componentConfig.type" [formGroup]="rootGroup">
+    <div class="label-container" libClickOutSide (clickOutSide)="clickOutSide()">
+        @if (componentConfig.icon != undefined) {
+            <lib-form-field-icon [style]="{'font-size': '1.3rem'}" [iconDef]="componentConfig.icon" ></lib-form-field-icon>
+        }
+        <div class="input-container">
+            @if (renderOpts) {
+                <div class="options-container form-lib-border-color-blue-92 form-lib-bg-color-white" @selectOptsAnime>
+                    <div class="options-content">
+                        <ul>
+                            @for (opt of selectOptions; track $index) {
+                                @if (opt.value != formControl.value ) {
+                                    <li class="form-lib-hover-bg-color-blue-92" (click)="setValue(opt)">
+                                        <div class="option-container">
+                                            {{opt.label}}
+                                        </div>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            }
+            <div class="selected-option-container" (click)="toggleSelectOptions()">
+                <div class="option-title">
+                    <span class="title">
+                        {{ formControl.value | libGetPropertyArrayOfObject: 'value' : 'label': selectOptions: 'select an option...'}}
+                    </span>
+                </div>
+                <div class="icon-container">
+                    <span class="icon">
+                        <fa-icon [icon]="icon.faChevronDown"></fa-icon>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if(renderErrorMsg){
+        <lib-input-error-message [placeholder]="componentConfig.label" [errorKey]="errorKey"></lib-input-error-message>
+    }
+</div>

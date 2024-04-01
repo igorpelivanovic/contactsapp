@@ -1,7 +1,0 @@
-<form #formRef [formGroup]="form" (ngSubmit)="submitFormEvent()">
-    <div class="form-elements-container">
-        @for (config of formConfig; track $index) {
-            <ng-container appFormComponent [componentConfigData]="initChildComponentConfig(config)"></ng-container>
-        }
-    </div>
-</form>

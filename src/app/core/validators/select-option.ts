@@ -1,5 +1,5 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
-import { SelectFieldOption } from "../interfaces/form/formContent";
+import { SelectFieldOption } from "../../../../projects/form/src/lib/interfaces/formContent";
 
 export function selectOptionValidation(options:  SelectFieldOption[]): ValidatorFn{
     return (control: AbstractControl): ValidationErrors | null => {

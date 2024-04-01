@@ -1,0 +1,65 @@
+@use 'sass:map';
+@import './variables';
+
+
+@each $key, $val in $libFormThemeColors{
+    #{'.form-lib-text-color-'+$key}{
+        color: $val;
+    }
+    #{'.form-lib-border-color-'+$key}{
+        border-color: $val;
+    }
+    #{'.form-lib-bg-color-'+$key}{
+        background-color: $val;
+    }
+    #{'.hover-bg-color-'+$key}:hover{
+        background-color: $val;
+    }
+}
+
+@supports (not selector(::-webkit-scrollbar)) and (not selector(::-webkit-scrollbar-thumb)){
+    *{
+        scrollbar-color: map.get($libFormThemeColors, 'form-lib-blue-90') transparent;
+    }
+}
+
+@supports selector(::-webkit-scrollbar) and selector(::-webkit-scrollbar-thumb){
+    ::-webkit-scrollbar-thumb{
+        @extend .form-lib-bg-color-blue-90;
+    }
+}
+
+
+form{
+    .form-component-container{
+        @extend .form-lib-border-color-blue-50;
+        input{
+            @extend .form-lib-text-color-black
+        }
+        button.clear-input{
+            @extend .form-lib-text-color-blue-10
+        }
+        &.array{
+            .form-element-container.array{
+                .components-container{
+                     .form-element-controlers-container > * {
+                        @extend .form-lib-border-color-gray;
+                    }
+                }
+            }
+        }
+        &:has(>*>.form-element-container>label>.component-content>.message-container),
+        &:has(>*>.form-element-container>.message-container){
+            @extend .form-lib-border-color-red;
+            .icon-container, input, button.clear-input, .selected-option-container{
+                @extend .form-lib-text-color-red
+            }
+            &:has(.options-container){
+                .selected-option-container, .icon-container{
+                    @extend .form-lib-text-color-black;
+                }
+                @extend .form-lib-border-color-blue-50;
+            }
+        }
+    }
+}

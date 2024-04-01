@@ -1,22 +1,19 @@
 import { AfterViewInit, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild, inject } from '@angular/core';
-import { FormComponent } from '../form/form.component';
 import { faUserPlus, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
-import { AbstractControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormGroup } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SetBgColorDirective } from '../../core/directives/set-bg-color.directive';
 import { FormContactButtonTiTles} from '../../core/interfaces/formContact.interface';
-import { FormConfigControls, FormInitData } from '../../core/interfaces/form/formControls.interface';
-import { SelectOptions } from '../../core/data/formContact/optionsOfTypeData';
-import { isEmptyValidator } from '../../core/validators/is-empty.validator';
-import { selectOptionValidation } from '../../core/validators/select-option';
+import { FormConfigControls, FormInitData } from '../../../../projects/form/src/lib/interfaces/formControls.interface';
 import { ContactFormContentInterface, ContactFormDataInterface } from '../../core/interfaces/contact.interface';
 import { CONTACT_FORM_CONGIF } from '../../core/data/formContact/formConfig';
+import { LibFormComponent } from 'form';
 
 @Component({
   selector: 'app-form-contact',
   standalone: true,
-  imports: [FontAwesomeModule, FormComponent, SetBgColorDirective],
+  imports: [FontAwesomeModule, SetBgColorDirective, LibFormComponent],
   templateUrl: './form-contact.component.html',
   styleUrl: './form-contact.component.scss'
 })
@@ -39,10 +36,9 @@ export class FormContactComponent implements OnInit, AfterViewInit, OnDestroy {
   
   formConfigData : FormConfigControls = CONTACT_FORM_CONGIF
 
-  @ViewChild(FormComponent, {static: true}) formInstance!: FormComponent
+  @ViewChild(LibFormComponent, {static: true}) formInstance!: LibFormComponent
   @Input() set formData(data: ContactFormContentInterface){
     this.formInit.data = data
-    this.letterIcon = data.name
     this.bgCode = data.iconColor
   }
   @Input() buttonsTitle: FormContactButtonTiTles = this._initFormButtonsTitles
@@ -55,6 +51,7 @@ export class FormContactComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.letterIcon = this.formInit.data?.['name']
   }
 
   ngAfterViewInit(): void {
@@ -71,7 +68,9 @@ export class FormContactComponent implements OnInit, AfterViewInit, OnDestroy {
     let control : AbstractControl | null = this.formInstance.getElement(['name'])
     if(control != null){
       this.letterIcon = control.value
-      this._subscription = control.valueChanges.subscribe(val=>this.letterIcon = val)
+      this._subscription = control.valueChanges.subscribe(val=>{
+        this.letterIcon = val
+      })
     }
   }
 
@@ -89,6 +88,10 @@ export class FormContactComponent implements OnInit, AfterViewInit, OnDestroy {
 
   get form(): FormGroup{
     return this.formInstance.form
+  }
+
+  get isInValid(): boolean{
+    return this.form.invalid
   }
 
   submitForm(): void{

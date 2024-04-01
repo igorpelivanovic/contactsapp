@@ -1,8 +1,9 @@
 import { Validators } from "@angular/forms";
-import { FormConfigControls } from "../../interfaces/form/formControls.interface";
+import { FormConfigControls } from "../../../../../projects/form/src/lib/interfaces/formControls.interface";
 import { isEmptyValidator } from "../../validators/is-empty.validator";
 import { selectOptionValidation } from "../../validators/select-option";
 import { SelectOptions } from "./optionsOfTypeData";
+import { DataIcon } from "./icons";
 
 export const CONTACT_FORM_CONGIF : FormConfigControls = [
     {
@@ -13,13 +14,13 @@ export const CONTACT_FORM_CONGIF : FormConfigControls = [
         isEmptyValidator()
     ],
       label: "name",
-      icon: 'name'
+      icon: DataIcon.get('name')
     },
     {
       label: 'number',
       type: 'array',
       name: 'phones',
-      icon: 'phones',
+      icon: DataIcon.get('phones'),
       validation: [],
       controls: {
         type: 'group',
@@ -45,7 +46,7 @@ export const CONTACT_FORM_CONGIF : FormConfigControls = [
       type: 'array',
       name: 'mails',
       validation: [],
-      icon: 'mails',
+      icon: DataIcon.get('mails'),
       controls: {
         type: 'group',
         controls: [
@@ -58,6 +59,7 @@ export const CONTACT_FORM_CONGIF : FormConfigControls = [
           {
             type: 'select',
             name: 'type',
+            label: 'option',
             options: SelectOptions.get('mails') || [],
             validation: [Validators.required, selectOptionValidation(SelectOptions.get('mails') || [])]
           }
@@ -68,7 +70,7 @@ export const CONTACT_FORM_CONGIF : FormConfigControls = [
       label: 'social account',
       type: 'array',
       name: 'socials',
-      icon: 'socials',
+      icon: DataIcon.get('socials'),
       validation: [],
       controls: {
         type: 'group',
@@ -81,6 +83,7 @@ export const CONTACT_FORM_CONGIF : FormConfigControls = [
           },
           {
             type: 'select',
+            label: 'option',
             name: 'type',
             options: SelectOptions.get('socials') || [],
             validation: [Validators.required, selectOptionValidation(SelectOptions.get('socials') || [])]

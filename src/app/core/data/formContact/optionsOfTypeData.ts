@@ -1,4 +1,4 @@
-import { SelectFieldOption } from "../../interfaces/form/formContent";
+import { SelectFieldOption } from "../../../../../projects/form/src/lib/interfaces/formContent";
 
 export const SelectOptions = new Map<string, SelectFieldOption[]>([
     ['phones', [

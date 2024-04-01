@@ -16,8 +16,8 @@
 </div>
 <div class="aplication-main-container">
     <div class="form-container">
-        <app-form [initForm]="formInit" (formSubmit)="submitForm()"></app-form>
-    </div>
+        <lib-form [initForm]="formInit" (formSubmit)="submitForm()"></lib-form>
+     </div>
     <div class="submit-form-btn-container">
         <button type="button" class="bg-color-blue-20 text-color-white" (click)="submitForm()" [disabled]="form.invalid">
             {{buttonsTitle.submit}}

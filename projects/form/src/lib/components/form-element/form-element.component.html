@@ -1,0 +1,12 @@
+<div class="form-component-container" [ngClass]="configData.type">
+    <ng-container libFormComponent [componentConfigData]="configData"></ng-container>
+    @if(componentData.parentType == 'array'){
+        <div class="delete-component-container">
+            <button type="button" class="form-lib-text-color-blue-10" (click)="removeElementHandle()">
+                <span class="icon">
+                    <fa-icon [icon]="icon.faTrash"></fa-icon>
+                </span>
+            </button>
+        </div>
+    }
+</div>

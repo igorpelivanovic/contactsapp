@@ -1,0 +1,22 @@
+<div class="form-element-container" [ngClass]="config.type" [formGroup]="config.parentGroup">
+    <div class="components-container">
+        @if(formArray.controls.length > 0 && config.icon != undefined) {
+            <lib-form-field-icon [iconDef]="config.icon" [style]="{'font-size': '1.3rem'}"></lib-form-field-icon>
+        }
+        <div class="form-element-controlers-container">
+            @for (item of formArrayValue; track item) {
+                <lib-form-element [congifData]="initChildComponentConfig($index)" (removeElementEvent)="removeFormElementHandle($index)"></lib-form-element>
+            }
+        </div>
+    </div>
+    <div class="add-control-container form-lib-border-color-blue-50">
+        <button type="button" class="form-lib-border-color-blue-50 form-lib-text-color-blue-10 add-control-btn" (click)="addField()">
+            <span class="icon">
+                <fa-icon [icon]="icon.faPlus"></fa-icon>
+            </span>
+            <span class="title">
+                add new {{config.label}}
+            </span>
+        </button>
+    </div>
+</div>

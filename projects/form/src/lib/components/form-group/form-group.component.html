@@ -1,0 +1,11 @@
+<div class="form-element-container" [ngClass]="componentConfigData.type" [formGroup]="formGroup">
+    @if(componentConfigData.icon != undefined){
+        <lib-form-field-icon [iconDef]="componentConfigData.icon"></lib-form-field-icon>
+    }
+    <div class="form-element-controlers-container">
+        @for (item of componentConfigData.controls; track $index) {
+            <lib-form-element [congifData]="initChildComponentConfig(item)"></lib-form-element>
+        }
+    </div>
+</div>
+

@@ -1,0 +1,22 @@
+<div class="form-element-container" [ngClass]="componentConfig.type" [formGroup]="rootGroup">
+    <label [for]="componentConfig.elementSelector">
+        <div class="component-content">
+            @if (componentConfig.icon != undefined) {
+                <lib-form-field-icon [style]="{'font-size': '1.3rem'}" [iconDef]="componentConfig.icon" ></lib-form-field-icon>
+            }
+            <div class="input-container" >
+                <input [ngClass]="componentConfig.elementSelector" [name]="componentConfig.elementSelector" [type]="componentConfig.type" autocomplete="off" spellcheck="off" [id]="componentConfig.elementSelector" [name]="componentConfig.elementSelector" [formControl]="formControl" [placeholder]="componentConfig.label">
+                @if (!fieldIsEmpty){
+                    <button type="button" class="clear-input" (click)="clearFormControl()">
+                        <span class="icon">
+                            <fa-icon [icon]="icon.faCircleXmark"></fa-icon>
+                        </span>
+                    </button>
+                }
+            </div>
+            @if(renderErrorMsg){
+                <lib-input-error-message [placeholder]="componentConfig.label" [errorKey]="errorKey"></lib-input-error-message>
+            }
+        </div>
+    </label>
+</div>
