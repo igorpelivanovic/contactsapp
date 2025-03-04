@@ -1,4 +1,4 @@
-# INFO BOOKS
+# CONTACTS APP
 
 ## :notebook_with_decorative_cover:WHAT IS IT?
 
